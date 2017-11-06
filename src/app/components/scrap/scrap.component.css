@@ -1,3 +1,10 @@
-.card{
+mat-card{
   overflow: scroll;
+  padding:0;
+}
+.search-form{
+  width:97%;
+}
+.table tbody tr{
+  background: #f6f7fb;
 }

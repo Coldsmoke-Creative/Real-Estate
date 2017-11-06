@@ -29,9 +29,8 @@ export class ScrapComponent implements OnInit {
     this.page=page;
   }
 
-  changeSize(event){
-    this.getData(event.target.value,this.page,this.sortBy,this.criteria);
-    this.perPage=event.target.value;
+  changeSize(){
+    this.getData(this.perPage,this.page,this.sortBy,this.criteria);
   }
 
   sort(value){
