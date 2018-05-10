@@ -1,10 +1,80 @@
-mat-card{
+.container{
+    min-height: 100vh;
+}
+
+.mat-card{
   overflow: scroll;
   padding:0;
+  margin-bottom:30px;
 }
+
 .search-form{
   width:97%;
 }
-.table tbody tr{
-  background: #f6f7fb;
+
+.mat-expansion-panel{
+  background: transparent;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.mat-expansion-panel-body{
+  margin:0;
+}
+
+.mat-expansion-panel-header{
+  padding:0;
+}
+
+.mat-expansion-panel-header-title,.mat-expansion-indicator::after, .mat-expansion-panel-header-description,.mat-radio-label{
+  color:#fff;
+  font-weight: 200;
+}
+
+.table {
+    min-height: 80px;
+}
+
+.table>thead>tr>th{
+  border-bottom: 0;
+}
+
+.table th{
+  font-weight: 300;
+  color:#666;
+  padding-left: 25px;
+  position: relative;
+  padding: 10px 10px 10px 25px;
+}
+
+.sort-icon{
+  position: absolute;
+  left: 0;
+  top: 5px;
+  cursor: pointer;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  padding-right: 16px;
+}
+
+.mat-radio-button{
+  margin: 5px;
+  width: 100%;
+}
+
+.mat-radio-button label .mat-radio-label-content{
+  font-weight: 100 !important;
+  text-transform: uppercase;
+}
+
+.mat-radio-label-content{
+  color:#fff;
+  font-weight: 100;
+}
+
+.mat-progress-bar {
+    position: absolute;
+    top: 70px;
+    width: 100%;
 }

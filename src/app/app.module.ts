@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule, Routes } from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule, MatToolbarModule, MatSelectModule, MatInputModule, MatCardModule } from '@angular/material';
+import { MatListModule, MatToolbarModule, MatSelectModule, MatInputModule, MatCardModule, MatSidenavModule, MatExpansionModule, MatRadioModule, MatChipsModule, MatDatepickerModule, MatNativeDateModule, MatProgressBarModule, MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ScrapComponent } from './components/scrap/scrap.component';
 import { KeysPipe } from './pipes/keys.pipe';
+import { FiltersComponent } from './components/filters/filters.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,7 +22,9 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ScrapComponent,
-    KeysPipe
+    KeysPipe,
+    FiltersComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,14 @@ const routes: Routes = [
     MatSelectModule,
     MatInputModule,
     MatCardModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatRadioModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

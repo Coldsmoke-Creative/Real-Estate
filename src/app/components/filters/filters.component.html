@@ -1,0 +1,31 @@
+<mat-chip-list>
+  <mat-chip disabled *ngFor="let filter of filters;let index=index" (remove)="remove(filter)" [ngSwitch]="filter.input">
+        <mat-form-field *ngSwitchCase="'text'">
+          <input matInput (keyup.enter)="applyFilter(filter.operation,filter.name,$event.target.value)" placeholder="{{filter.name}}">
+        </mat-form-field>
+        <mat-form-field class="number" *ngSwitchCase="'range'">
+          <input matInput (focusout)=setMinNum($event.target.value) type="number" (keyup.enter)="applyFilterMinNum(filter.operation,filter.name,$event.target.value)" placeholder="Min">
+        </mat-form-field>
+        <mat-form-field class="number" *ngSwitchCase="'range'">
+          <input matInput (focusout)=setMaxNum($event.target.value) type="number" (keyup.enter)="applyFilterMaxNum(filter.operation,filter.name,$event.target.value)" placeholder="Max">
+        </mat-form-field>
+        <mat-form-field *ngSwitchCase="'select'">
+          <mat-select [(ngModel)]="selectedValue" (change)="applyFilter(filter.operation,filter.name,selectedValue)" placeholder="Select">
+            <mat-option *ngFor="let value of filter.values" [value]="value">
+              {{ value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="date" *ngSwitchCase="'datepicker'">
+            <input matInput [matDatepicker]="pickermin" (dateInput)="applyFilterMinDate(filter.operation,filter.name,$event.target.value)" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="pickermin"></mat-datepicker-toggle>
+            <mat-datepicker #pickermin></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="date" *ngSwitchCase="'datepicker'">
+            <input matInput [matDatepicker]="pickermax" (dateInput)="applyFilterMaxDate(filter.operation,filter.name,$event.target.value)" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="pickermax"></mat-datepicker-toggle>
+            <mat-datepicker #pickermax></mat-datepicker>
+        </mat-form-field>
+      <mat-icon matChipRemove>X</mat-icon>
+  </mat-chip>
+</mat-chip-list>

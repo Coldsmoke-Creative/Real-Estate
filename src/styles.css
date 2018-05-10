@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,900');
+
+body{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+.mat-toolbar{
+  background: #3f51b5;
+  font-weight: 300;
+  color:#fff;
+}

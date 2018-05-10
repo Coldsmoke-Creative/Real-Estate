@@ -1,0 +1,16 @@
+.mat-chip {
+    margin-bottom: 20px;
+}
+
+.mat-chip:not(.mat-basic-chip) {
+    border-radius: 0;
+    padding: 5px 10px 0 10px;
+}
+
+.number {
+    width: 50px;
+}
+
+.date {
+    width: 110px;
+}

@@ -1,74 +1,71 @@
-
-<div class="row">
-    <div class="col-md-6 col-md-offset-6 mt-4 text-right">
-      Results per page
-      <mat-form-field>
-        <mat-select [(ngModel)]="perPage" (change)="changeSize($event)">
-          <mat-option [value]="10">10</mat-option>
-          <mat-option [value]="20">20</mat-option>
-          <mat-option [value]="30">30</mat-option>
-          <mat-option [value]="40">40</mat-option>
-        </mat-select>
-      </mat-form-field>
+<mat-sidenav-container>
+  <app-sidenav (selectFilterEvent)="selectFilter($event)"></app-sidenav>
+  <div class="container">
+    <div class="row">
+          <div class="col-md-12 mt-4">
+            <mat-form-field class="search-form">
+              <input matInput #searchInput placeholder="Search address">
+            </mat-form-field>
+            <i (click)="search(searchInput.value)" class="material-icons">search</i>
+        </div>
+        <div class="col-md-12">
+            <app-filters (applyFilterEvent)="selectFilter($event)" [filters]="filters"></app-filters>
+        </div>
     </div>
-      <div class="col-md-12 mt-4">
-        <mat-form-field class="search-form">
-          <input matInput [(ngModel)]="search.value" placeholder="Search address">
-        </mat-form-field>
-        <span (click)="search(search.value)"><i (click)="search(search.value)" class="material-icons">search</i></span>
-    </div>
-</div>
-<mat-card>
-    <table class="table">
-        <thead>
-          <tr>
-            <th *ngFor="let field of fields">{{ field }} <i (click)='sort(field)' class="material-icons">filter_list</i></th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let place of places | paginate: { itemsPerPage: pageSize, currentPage:page, id: 'server' , totalItems: total }">
-                <td>{{place.OBJECTID}}</td>
-                <td>{{place.SSL}}</td>
-                <td>{{place.ASSESSOR_NAME}}</td>
-                <td>{{place.LAND_USE_CODE}}</td>
-                <td>{{place.LAND_USE_DESCRIPTION}}</td>
-                <td>{{place.LANDAREA}}</td>
-                <td>{{place.PROPERTY_ADDRESS}}</td>
-                <td>{{place.OTR_NEIGHBORHOOD_CODE}}</td>
-                <td>{{place.OTR_NEIGHBORHOOD_NAME}}</td>
-                <td>{{place.OWNER_NAME_PRIMARY}}</td>
-                <td>{{place.CAREOF_NAME}}</td>
-                <td>{{place.OWNER_ADDRESS_LINE1}}</td>
-                <td>{{place.OWNER_ADDRESS_LINE2}}</td>
-                <td>{{place.OWNER_ADDRESS_CITYSTZIP}}</td>
-                <td>{{place.APPRAISED_VALUE_BASEYEAR_LAND}}</td>
-                <td>{{place.APPRAISED_VALUE_BASEYEAR_BLDG}}</td>
-                <td>{{place.APPRAISED_VALUE_PRIOR_LAND}}</td>
-                <td>{{place.APPRAISED_VALUE_PRIOR_IMPR}}</td>
-                <td>{{place.APPRAISED_VALUE_PRIOR_TOTAL}}</td>
-                <td>{{place.APPRAISED_VALUE_CURRENT_LAND}}</td>
-                <td>{{place.APPRAISED_VALUE_CURRENT_IMPR}}</td>
-                <td>{{place.APPRAISED_VALUE_CURRENT_TOTAL}}</td>
-                <td>{{place.PHASEIN_VALUE_CURRENT_LAND}}</td>
-                <td>{{place.PHASEIN_VALUE_CURRENT_BLDG}}</td>
-                <td>{{place.VACANT_USE}}</td>
-                <td>{{place.HOMESTEAD_DESCRIPTION}}</td>
-                <td>{{place.TAX_TYPE_DESCRIPTION}}</td>
-                <td>{{place.TAXRATE}}</td>
-                <td>{{place.MIXED_USE}}</td>
-                <td>{{place.OWNER_OCCUPIED_COOP_UNITS}}</td>
-                <td>{{place.LAST_SALE_PRICE}}</td>
-                <td>{{place.LAST_SALE_DATE}}</td>
-                <td>{{place.DEED_DATE}}</td>
-                <td>{{place.CURRENT_ASSESSMENT_CAP}}</td>
-                <td>{{place.PROPOSED_ASSESSMENT_CAP}}</td>
-                <td>{{place.OWNER_NAME_SECONDARY}}</td>
-                <td>{{place.ADDRESS_ID}}</td>
-                <td>{{place.LASTMODIFIEDDATE}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="has-text-centered">
-        <pagination-controls (pageChange)="getList($event)" id="server" maxSize="5" directionLinks="true" autoHide="true"></pagination-controls>
-    </div>
-</mat-card>
+    <mat-card>
+        <table class="table">
+            <thead>
+              <tr>
+                <th *ngFor="let field of fields"><i (click)="add(field)" class="material-icons sort-icon">sort</i> <a (click)="sort(field.name)">{{ field.name }}</a></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!loading">
+                <tr *ngFor="let place of places | paginate: { itemsPerPage: perPage, currentPage:page, id: 'server' , totalItems: total }">
+                    <td>{{place.OBJECTID}}</td>
+                    <td>{{place.SSL}}</td>
+                    <td>{{place.ASSESSOR_NAME}}</td>
+                    <td>{{place.LAND_USE_CODE}}</td>
+                    <td>{{place.LAND_USE_DESCRIPTION}}</td>
+                    <td>{{place.LANDAREA}}</td>
+                    <td>{{place.PROPERTY_ADDRESS}}</td>
+                    <td>{{place.OTR_NEIGHBORHOOD_CODE}}</td>
+                    <td>{{place.OTR_NEIGHBORHOOD_NAME}}</td>
+                    <td>{{place.OWNER_NAME_PRIMARY}}</td>
+                    <td>{{place.CAREOF_NAME}}</td>
+                    <td>{{place.OWNER_ADDRESS_LINE1}}</td>
+                    <td>{{place.OWNER_ADDRESS_LINE2}}</td>
+                    <td>{{place.OWNER_ADDRESS_CITYSTZIP}}</td>
+                    <td>{{place.APPRAISED_VALUE_BASEYEAR_LAND | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_BASEYEAR_BLDG | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_PRIOR_LAND | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_PRIOR_IMPR | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_PRIOR_TOTAL | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_CURRENT_LAND | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_CURRENT_IMPR | currency}}</td>
+                    <td>{{place.APPRAISED_VALUE_CURRENT_TOTAL | currency}}</td>
+                    <td>{{place.PHASEIN_VALUE_CURRENT_LAND | currency}}</td>
+                    <td>{{place.PHASEIN_VALUE_CURRENT_BLDG | currency}}</td>
+                    <td>{{place.VACANT_USE}}</td>
+                    <td>{{place.HOMESTEAD_DESCRIPTION}}</td>
+                    <td>{{place.TAX_TYPE_DESCRIPTION}}</td>
+                    <td>{{place.TAXRATE}}</td>
+                    <td>{{place.MIXED_USE}}</td>
+                    <td>{{place.OWNER_OCCUPIED_COOP_UNITS}}</td>
+                    <td>{{place.LAST_SALE_PRICE | currency}}</td>
+                    <td>{{place.LAST_SALE_DATE | date:'MM-dd-yyyy' }}</td>
+                    <td>{{place.DEED_DATE | date:'MM-dd-yyyy' }}</td>
+                    <td>{{place.CURRENT_ASSESSMENT_CAP}}</td>
+                    <td>{{place.PROPOSED_ASSESSMENT_CAP}}</td>
+                    <td>{{place.OWNER_NAME_SECONDARY}}</td>
+                    <td>{{place.ADDRESS_ID}}</td>
+                    <td>{{place.LASTMODIFIEDDATE | date:'MM-dd-yyyy'}}</td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="loading">
+                <mat-progress-bar mode="buffer"></mat-progress-bar>
+            </tbody>
+        </table>
+        <mat-paginator (page)="paginate($event)" [length]="total" [pageSize]="perPage" [pageSizeOptions]="[5, 10, 20, 30, 50]"></mat-paginator>
+    </mat-card>
+  </div>
+</mat-sidenav-container>

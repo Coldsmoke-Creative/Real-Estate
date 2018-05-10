@@ -1,0 +1,28 @@
+.mat-sidenav{
+  width: 250px;
+  background: #30333a;
+  padding:10px;
+}
+.mat-sidenav h2{
+  text-transform: uppercase;
+  font-weight: 300;
+  color:#fff;
+  font-size:16px;
+}
+.sidenav-bar{
+  position: absolute;
+  left:0;
+  background: #30333a;
+  height: 100%;
+}
+.sidenav-bar button{
+  background: transparent;
+  border:0;
+  color:#fff;
+}
+.sidenav-bar button:focus{
+  outline: none;
+}
+.sidenav-bar button i{
+  font-size:34px
+}

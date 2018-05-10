@@ -6,14 +6,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MapserverService {
 
-  BASE_URL: string = 'https://work-place.herokuapp.com';
+  BASE_URL: string = 'https://work-place.herokuapp.com/';
 
   constructor(private http: Http) { }
 
-  get(page,perPage,value,criteria) {
+  get(page,perPage,value,criteria,filter) {
     let params: URLSearchParams = new URLSearchParams();
     params.set('sortBy', value);
     params.set('criteria', criteria);
+    params.set('filter', filter);
     return this.http.get(`${this.BASE_URL}/api/addresses/${page}/${perPage}`,{ search: params })
       .map((res) => res.json());
   }
