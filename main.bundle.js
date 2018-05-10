@@ -524,7 +524,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var MapserverService = (function () {
     function MapserverService(http) {
         this.http = http;
-        this.BASE_URL = 'https://work-place.herokuapp.com/';
+        this.BASE_URL = 'https://work-place.herokuapp.com';
     }
     MapserverService.prototype.get = function (page, perPage, value, criteria, filter) {
         var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* URLSearchParams */]();
