@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MapserverService {
 
-  BASE_URL: string = 'https://work-place.herokuapp.com/';
+  BASE_URL: string = 'https://work-place.herokuapp.com';
 
   constructor(private http: Http) { }
 
